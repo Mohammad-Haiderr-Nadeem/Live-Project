@@ -1,0 +1,72 @@
+.loginContainer {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10%;
+}
+
+.myh2 {
+  text-align: center;
+  color: #333;
+}
+
+.myForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  margin-bottom: 15px;
+}
+
+.myLabel {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.myInput {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.myButton {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 1%;
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.myButton:hover {
+  background-color: #0056b3;
+}
+
+.myButton:active {
+  background-color: #004080;
+}
+
+.mySpan {
+  font-size: large;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signUpTitle {
+  color: blue;
+  font-size: large;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}

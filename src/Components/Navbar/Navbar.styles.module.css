@@ -1,0 +1,38 @@
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+.logoContainer {
+  position: relative;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.logoutBtn {
+  position: absolute;
+  top: 50px; 
+  right: 0;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.navBtn {
+  margin-left: 5%;
+  background-color: #3498db; 
+  color: #fff; 
+  border: none;
+  padding: 8px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
