@@ -15,10 +15,12 @@ app.use(cookieParser());
 
 const usersRoute = require("./routes/users");
 const loginRoute = require("./routes/login");
+const firendsRoute = require("./routes/friends");
 
 app.use(express.json());
 app.use("/", usersRoute);
 app.use("/", loginRoute);
+app.use("/", firendsRoute);
 
 const PORT = 8000;
 app.listen(PORT, async () => {

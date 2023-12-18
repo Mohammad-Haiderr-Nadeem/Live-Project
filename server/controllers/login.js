@@ -102,7 +102,6 @@ const getUsers = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const { id } = await req.params;
-    console.log("id: ", id);
     const user = await modal.User.findOne({ where: { id } });
     if (user) {
       return res.status(200).json(user);
@@ -173,7 +172,6 @@ module.exports = {
   addUser,
   checkUser,
   getUsers,
-
   getUser,
   checkGoogleUser,
 };
