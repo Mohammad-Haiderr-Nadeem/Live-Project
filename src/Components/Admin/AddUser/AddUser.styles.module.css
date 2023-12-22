@@ -73,10 +73,10 @@
 }
 
 .radioGroup {
-    display: flex;
-    margin-top: 4px;
-  }
-  
-  .radioLabel {
-    margin-right: 16px;
-  }
+  display: flex;
+  margin-top: 4px;
+}
+
+.radioLabel {
+  margin-right: 16px;
+}

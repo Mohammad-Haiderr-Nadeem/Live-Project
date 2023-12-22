@@ -6,19 +6,17 @@ import axios from "axios";
 import validator from "validator";
 import { useTranslation } from "react-i18next";
 
-const Navbar = () => {
+const AdminNavbar = () => {
   const [showLogout, setShowLogout] = useState(false);
   const [image, setImage] = useState("");
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation([
-    "AllProfiles",
-    "FriendsProfile",
-    "MyProfile",
-  ]);
+  const { t, i18n } = useTranslation(["AddAdmin", "AddUser", "MyProfile", "AllUsers"]);
 
   const getImage = useCallback(async () => {
     const userId = Cookies.get("myId");
-    const res = await axios.get(`http://localhost:8000/getMyProfile/${userId}`);
+    const res = await axios.get(
+      `http://localhost:8000/getAdminProfile/${userId}`
+    );
     setImage(res.data.image);
   }, []);
 
@@ -34,19 +32,23 @@ const Navbar = () => {
     setShowLogout(false);
     Cookies.remove("accessToken");
     Cookies.remove("myId");
-    navigate("/login");
+    navigate("/admin/login");
   };
 
   const handleMyProfileClick = () => {
-    navigate(`/myprofile/${Cookies.get("myId")}`);
+    navigate(`/admin/adminprofile/${Cookies.get("myId")}`);
   };
 
-  const handleAllProfilesClick = () => {
-    navigate("/allprofiles");
+  const handleAddUserClick = () => {
+    navigate("/admin/adduser");
   };
 
-  const handleMyFriendsClick = () => {
-    navigate("/myfriends");
+  const handleAddAdminClick = () => {
+    navigate("/admin/addadmin");
+  };
+
+  const handleAllUsersClick = () => {
+    navigate("/admin/allusers");
   };
 
   const handleLanguageChangeEnglish = () => {
@@ -66,7 +68,7 @@ const Navbar = () => {
               validator.isURL(image)
                 ? image
                 : image
-                ? require(`../../assets/images/${image}`)
+                ? require(`../../../assets/images/${image}`)
                 : "image"
             }
             alt="User Avatar"
@@ -78,14 +80,17 @@ const Navbar = () => {
               Logout
             </button>
           )}
+          <button className={styles.navBtn} onClick={handleAddUserClick}>
+            {t("AddUser:adduser")}
+          </button>
+          <button className={styles.navBtn} onClick={handleAddAdminClick}>
+            {t("AddAdmin:addadmin")}
+          </button>
           <button className={styles.navBtn} onClick={handleMyProfileClick}>
-            {t("myprofile")}
+            {t("MyProfile:myprofile")}
           </button>
-          <button className={styles.navBtn} onClick={handleAllProfilesClick}>
-            {t("allprofile")}
-          </button>
-          <button className={styles.navBtn} onClick={handleMyFriendsClick}>
-            {t("myfriends")}
+          <button className={styles.navBtn} onClick={handleAllUsersClick}>
+            {t("AllUsers:allusers")}
           </button>
           <select
             name="language"
@@ -108,4 +113,4 @@ const Navbar = () => {
     </React.Fragment>
   );
 };
-export default Navbar;
+export default AdminNavbar;

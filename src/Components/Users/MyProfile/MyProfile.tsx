@@ -3,7 +3,8 @@ import styles from "./MyProfile.styles.module.css";
 import Cookies from "js-cookie";
 import axios from "axios";
 import validator from "validator";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../../Navbar/Navbar";
+import { useTranslation } from "react-i18next";
 
 const MyProfile = () => {
   const [fisrtName, setFirstName] = useState("");
@@ -11,6 +12,7 @@ const MyProfile = () => {
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
+  const { t } = useTranslation(["MyProfile"]);
 
   const getUser = useCallback(async () => {
     const res = await axios.get(
@@ -37,7 +39,7 @@ const MyProfile = () => {
               validator.isURL(image)
                 ? image
                 : image
-                ? require(`../../assets/images/${image}`)
+                ? require(`../../../assets/images/${image}`)
                 : "image"
             }
             alt="Avatar"
@@ -45,16 +47,16 @@ const MyProfile = () => {
         </div>
         <div className={styles.profileDetails}>
           <p>
-            <strong>Email:</strong> {email}
+            <strong>{t("email")}:</strong> {email}
           </p>
           <p>
-            <strong>First Name:</strong> {fisrtName}
+            <strong>{t("firstname")}:</strong> {fisrtName}
           </p>
           <p>
-            <strong>Last Name:</strong> {lastName}
+            <strong>{t("lastname")}:</strong> {lastName}
           </p>
           <p>
-            <strong>Gender:</strong> {gender}
+            <strong>{t("gender")}:</strong> {gender}
           </p>
         </div>
       </div>

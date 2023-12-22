@@ -99,7 +99,7 @@ const Login = () => {
       </div>
       <div>
         <span className={styles.mySpan}>
-          New user? Please
+          New user? Please{"  "}
           <span className={styles.signUpTitle} onClick={handleOnClickSignUp}>
             Sign Up
           </span>
