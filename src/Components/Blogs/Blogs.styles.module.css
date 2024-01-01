@@ -1,0 +1,69 @@
+.blogForm {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 560px;
+  margin: 20px auto;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.profilePicture {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+  border: 3px solid #3498db;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+.mytextarea {
+  width: 95%;
+  padding: 15px;
+  margin-bottom: 20px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.mybutton {
+  background-color: #3498db;
+  color: #fff;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.mybutton:hover {
+  background-color: #2980b9;
+}
+
+.myPara {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #333;
+  text-align: center;
+}

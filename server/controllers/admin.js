@@ -19,8 +19,8 @@ const verifyAdmin = async (req, res) => {
             process.env.JWT_SECRET_KEY,
             { expiresIn: "1h" }
           );
-          res.cookie("accessToken", token);
-          res.cookie("myId", user.id);
+          res.cookie("adminAccessToken", token);
+          res.cookie("myAdminId", user.id);
           return res.status(200).json({ msg: "SUCCESSFUL" });
         } else {
           res.status(404).json({ msg: "UNSUCCESSFUL!! Invalid Password" });
@@ -267,6 +267,19 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const getAdmins = async (req, res) => {
+  try {
+    const users = await modal.Admin.findAll();
+    if (users) {
+      return res.status(200).json(users);
+    } else {
+      return res.status(400).json({ msg: "COULDN'T FIND ANY USERS" });
+    }
+  } catch (err) {
+    console.log("error in getting all users", err);
+  }
+};
+
 module.exports = {
   verifyAdmin,
   getAdmin,
@@ -276,4 +289,5 @@ module.exports = {
   addUser,
   updateUser,
   deleteUser,
+  getAdmins,
 };

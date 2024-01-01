@@ -5,6 +5,7 @@ import axios from "axios";
 import validator from "validator";
 import Navbar from "../../Navbar/Navbar";
 import { useTranslation } from "react-i18next";
+import MyBlogs from "./MyBlogs/MyBlogs";
 
 const MyProfile = () => {
   const [fisrtName, setFirstName] = useState("");
@@ -60,6 +61,7 @@ const MyProfile = () => {
           </p>
         </div>
       </div>
+      <MyBlogs />
     </React.Fragment>
   );
 };

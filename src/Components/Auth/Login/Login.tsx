@@ -4,7 +4,7 @@ import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Login.styles.module.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 axios.defaults.withCredentials = true;
 
@@ -24,7 +24,7 @@ const Login = () => {
         if (res.status === 200) {
           setEmail("");
           setPassword("");
-          navigate("/home");
+          navigate("/blogs");
         }
       } else {
         Swal.fire({
@@ -33,7 +33,20 @@ const Login = () => {
           text: "Fields are missing!",
         });
       }
-    } catch (err) {
+    } catch (err: AxiosError | any) {
+      if (err.response.status === 404) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops... Invalid Credentials",
+          text: "Incorrect Password!",
+        });
+      } else if (err.response.status === 406) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops... Invalid Credentials",
+          text: "Incorrect Email!",
+        });
+      }
       console.log("error logging into the form", err);
     }
   };

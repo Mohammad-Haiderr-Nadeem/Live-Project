@@ -19,12 +19,14 @@ const usersRoute = require("./routes/users");
 const loginRoute = require("./routes/login");
 const firendsRoute = require("./routes/friends");
 const adminRoutes = require("./routes/admin");
+const blogRoutes = require("./routes/blogs");
 
 app.use(express.json());
 app.use("/", usersRoute);
 app.use("/", loginRoute);
 app.use("/", firendsRoute);
 app.use("/", adminRoutes);
+app.use("/", blogRoutes);
 
 const PORT = 8000;
 app.listen(PORT, async () => {

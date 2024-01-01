@@ -8,6 +8,7 @@ const {
   addUser,
   updateUser,
   deleteUser,
+  getAdmins
 } = require("../controllers/admin");
 const { uploadFile } = require("../middleware/uploadFile");
 const { updateFile } = require("../middleware/updateFile");
@@ -24,5 +25,6 @@ router.post("/addAdmin", upload.single("image"), uploadFile, addAdmin);
 router.post("/addUser", upload.single("image"), uploadFile, addUser);
 router.patch("/updateUser/:id", upload.single("image"), updateFile, updateUser);
 router.delete("/deleteUser/:id", deleteUser);
+router.get("/getAllAdmins", getAdmins);
 
 module.exports = router;

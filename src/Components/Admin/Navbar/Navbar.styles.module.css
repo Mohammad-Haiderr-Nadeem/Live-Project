@@ -6,6 +6,8 @@
 
 .logoContainer {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .avatar {
@@ -17,26 +19,50 @@
 
 .logoutBtn {
   position: absolute;
-  top: 50px;
+  top: 77px;
   right: 0;
   background-color: #333;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 12px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.navBtn {
+.navList {
+  list-style: none;
+  display: flex;
   margin-left: 5%;
+}
+
+.navItem {
+  /* background-color: #3498db; */
+  color: #fff;
+  padding: 8px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  /* border: 1px solid #2980b9; */
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.navItem:hover {
+  background-color: #2980b9;
+}
+
+.myDropdown {
+  margin-left: auto;
   background-color: #3498db;
   color: #fff;
   border: none;
   padding: 8px 12px;
-  margin-right: 10px;
   cursor: pointer;
-  font-size: 14px;
+  border-radius: 5px;
+  appearance: none;
 }
 
-.myDropdown {
-  margin-left: 30%;
+.myDropdown:hover {
+  background-color: #2980b9;
 }

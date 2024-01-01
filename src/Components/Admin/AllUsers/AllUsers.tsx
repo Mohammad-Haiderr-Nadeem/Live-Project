@@ -13,7 +13,7 @@ interface User {
   email: string;
   gender: string;
   image: string;
-  updatedAt: string;
+  createdAt: string;
 }
 
 const AllUsers = () => {
@@ -25,7 +25,7 @@ const AllUsers = () => {
       email: "",
       gender: "",
       image: "",
-      updatedAt: "",
+      createdAt: "",
     },
   ]);
   const [user, setUser] = useState<User | null>(null);
@@ -100,10 +100,11 @@ const AllUsers = () => {
       <table className={styles.mytable}>
         <thead>
           <tr className={styles.mytr}>
-            <th className={styles.myth}>User ID</th>
+            <th className={styles.myth}>Image</th>
             <th className={styles.myth}>Name</th>
             <th className={styles.myth}>Email</th>
-            <th className={styles.myth}>Updated At</th>
+            <th className={styles.myth}>Gender</th>
+            <th className={styles.myth}>Created At</th>
             <th className={styles.myth}>Edit</th>
             <th className={styles.myth}>Delete</th>
           </tr>
@@ -114,7 +115,9 @@ const AllUsers = () => {
               serialNumber={user.id}
               name={`${user.firstName} ${user.lastName}`}
               email={user.email}
-              updatedAt={user.updatedAt}
+              gender={user.gender}
+              createdAt={user.createdAt}
+              image={user?.image}
               key={user.id}
               onEdit={() => handleEdit(user.id)}
               onDelete={() => handleDelete(user.id)}

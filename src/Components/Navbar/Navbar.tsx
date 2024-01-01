@@ -14,6 +14,7 @@ const Navbar = () => {
     "AllProfiles",
     "FriendsProfile",
     "MyProfile",
+    "Home",
   ]);
 
   const getImage = useCallback(async () => {
@@ -34,6 +35,8 @@ const Navbar = () => {
     setShowLogout(false);
     Cookies.remove("accessToken");
     Cookies.remove("myId");
+    Cookies.remove("firstName");
+    Cookies.remove("lastName");
     navigate("/login");
   };
 
@@ -49,12 +52,16 @@ const Navbar = () => {
     navigate("/myfriends");
   };
 
-  const handleLanguageChangeEnglish = () => {
-    i18n.changeLanguage("en");
+  const handleBlogsClick = () => {
+    navigate("/blogs");
   };
 
-  const handleLanguageChangeSpanish = () => {
-    i18n.changeLanguage("es");
+  const handleLanguageChange = (selectedLanguage: string) => {
+    if (selectedLanguage === "en") {
+      i18n.changeLanguage("en");
+    } else if (selectedLanguage === "es") {
+      i18n.changeLanguage("es");
+    }
   };
 
   return (
@@ -78,27 +85,25 @@ const Navbar = () => {
               Logout
             </button>
           )}
-          <button className={styles.navBtn} onClick={handleMyProfileClick}>
-            {t("myprofile")}
-          </button>
-          <button className={styles.navBtn} onClick={handleAllProfilesClick}>
-            {t("allprofile")}
-          </button>
-          <button className={styles.navBtn} onClick={handleMyFriendsClick}>
-            {t("myfriends")}
-          </button>
+          <ul className={styles.navList}>
+            <li className={styles.navItem} onClick={handleMyProfileClick}>
+              {t("myprofile")}
+            </li>
+            <li className={styles.navItem} onClick={handleAllProfilesClick}>
+              {t("allprofile")}
+            </li>
+            <li className={styles.navItem} onClick={handleMyFriendsClick}>
+              {t("myfriends")}
+            </li>
+            <li className={styles.navItem} onClick={handleBlogsClick}>
+              {t("Home:home")}
+            </li>
+          </ul>
           <select
             name="language"
             id="language"
             className={styles.myDropdown}
-            onChange={(e) => {
-              const selectedLanguage = e.target.value;
-              if (selectedLanguage === "en") {
-                handleLanguageChangeEnglish();
-              } else if (selectedLanguage === "es") {
-                handleLanguageChangeSpanish();
-              }
-            }}
+            onChange={(e) => handleLanguageChange(e.target.value)}
           >
             <option value="en">English</option>
             <option value="es">Spanish</option>

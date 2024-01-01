@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./Login.styles.module.css";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -20,7 +21,20 @@ const AdminLogin = () => {
         setPassword("");
         navigate("/admin/dashboard");
       }
-    } catch (err) {
+    } catch (err: AxiosError | any) {
+      if (err.response.status === 406) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops... Invalid credentials",
+          text: "Incorrect email!",
+        });
+      } else if (err.response.status === 404) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops... Invalid credentials",
+          text: "Incorrect password!",
+        });
+      }
       console.log("error is logging in Admin", err);
     }
   };

@@ -10,10 +10,17 @@ const AdminNavbar = () => {
   const [showLogout, setShowLogout] = useState(false);
   const [image, setImage] = useState("");
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation(["AddAdmin", "AddUser", "MyProfile", "AllUsers"]);
+  const { t, i18n } = useTranslation([
+    "AddAdmin",
+    "AddUser",
+    "MyProfile",
+    "AllUsers",
+    "AllAdmins",
+    "Blogs",
+  ]);
 
   const getImage = useCallback(async () => {
-    const userId = Cookies.get("myId");
+    const userId = Cookies.get("myAdminId");
     const res = await axios.get(
       `http://localhost:8000/getAdminProfile/${userId}`
     );
@@ -30,13 +37,13 @@ const AdminNavbar = () => {
 
   const handleLogout = () => {
     setShowLogout(false);
-    Cookies.remove("accessToken");
-    Cookies.remove("myId");
+    Cookies.remove("adminAccessToken");
+    Cookies.remove("myAdminId");
     navigate("/admin/login");
   };
 
   const handleMyProfileClick = () => {
-    navigate(`/admin/adminprofile/${Cookies.get("myId")}`);
+    navigate(`/admin/adminprofile/${Cookies.get("myAdminId")}`);
   };
 
   const handleAddUserClick = () => {
@@ -49,6 +56,14 @@ const AdminNavbar = () => {
 
   const handleAllUsersClick = () => {
     navigate("/admin/allusers");
+  };
+
+  const handleAllAdminsClick = () => {
+    navigate("/admin/alladmins");
+  };
+
+  const handleBlogsClick = () => {
+    navigate("/admin/blogs");
   };
 
   const handleLanguageChangeEnglish = () => {
@@ -80,18 +95,26 @@ const AdminNavbar = () => {
               Logout
             </button>
           )}
-          <button className={styles.navBtn} onClick={handleAddUserClick}>
-            {t("AddUser:adduser")}
-          </button>
-          <button className={styles.navBtn} onClick={handleAddAdminClick}>
-            {t("AddAdmin:addadmin")}
-          </button>
-          <button className={styles.navBtn} onClick={handleMyProfileClick}>
-            {t("MyProfile:myprofile")}
-          </button>
-          <button className={styles.navBtn} onClick={handleAllUsersClick}>
-            {t("AllUsers:allusers")}
-          </button>
+          <ul className={styles.navList}>
+            <li className={styles.navItem} onClick={handleMyProfileClick}>
+              {t("MyProfile:myprofile")}
+            </li>
+            <li className={styles.navItem} onClick={handleAddUserClick}>
+              {t("AddUser:adduser")}
+            </li>
+            <li className={styles.navItem} onClick={handleAddAdminClick}>
+              {t("AddAdmin:addadmin")}
+            </li>
+            <li className={styles.navItem} onClick={handleAllUsersClick}>
+              {t("AllUsers:allusers")}
+            </li>
+            <li className={styles.navItem} onClick={handleAllAdminsClick}>
+              {t("AllAdmins:alladmins")}
+            </li>
+            <li className={styles.navItem} onClick={handleBlogsClick}>
+              {t("Blogs:blogs")}
+            </li>
+          </ul>
           <select
             name="language"
             id="language"

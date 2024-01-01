@@ -13,7 +13,17 @@ i18next
     },
     fallbackLng: "en",
     debug: false,
-    ns: ["AllProfiles", "MyProfile", "FreindsProfile", "AddAdmin", "AddUser", "AllUsers"],
+    ns: [
+      "AllProfiles",
+      "MyProfile",
+      "FreindsProfile",
+      "AddAdmin",
+      "AddUser",
+      "AllUsers",
+      "AllAdmins",
+      "Blogs",
+      "Home",
+    ],
     interpolation: {
       espaceValue: false,
       formatSeperator: ",",

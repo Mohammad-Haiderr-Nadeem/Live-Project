@@ -19,7 +19,7 @@ const AdminProfile = () => {
 
   const getUser = useCallback(async () => {
     const res = await axios.get(
-      `http://localhost:8000/getAdminProfile/${Cookies.get("myId")}`
+      `http://localhost:8000/getAdminProfile/${Cookies.get("myAdminId")}`
     );
     setFirstName(res.data.firstName);
     setLastName(res.data.lastName);

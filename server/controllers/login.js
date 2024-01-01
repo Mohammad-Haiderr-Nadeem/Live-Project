@@ -70,6 +70,8 @@ const checkUser = async (req, res) => {
           );
           res.cookie("accessToken", token);
           res.cookie("myId", user.id);
+          res.cookie("firstName", user.firstName.trim());
+          res.cookie("lastName", user.lastName.trim());
           return res.status(200).json({ msg: "SUCCESSFUL" });
         } else {
           res.status(404).json({ msg: "UNSUCCESSFUL!! Invalid Password" });
