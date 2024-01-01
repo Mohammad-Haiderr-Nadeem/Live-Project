@@ -1,53 +1,61 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+    await queryInterface.createTable(
+      "Users",
+      {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER,
+        },
+        email: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        password: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        firstName: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        lastName: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        gender: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        image: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        friends: {
+          type: Sequelize.ARRAY(Sequelize.STRING),
+          allowNull: true,
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+        },
+        deletedAt: {
+          type: Sequelize.DATE,
+          allowNull: true,
+        },
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      gender: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      image: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      friends: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
-        allowNull: true,
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
+      { paranoid: true }
+    );
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
-  }
+    await queryInterface.dropTable("Users");
+  },
 };

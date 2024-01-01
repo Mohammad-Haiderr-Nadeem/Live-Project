@@ -9,9 +9,13 @@ const {
   deleteBlog,
 } = require("../controllers/blogs");
 
+const { uploadBlogImage } = require("../middleware/uploadBlogImage");
+const multer = require("multer");
+const upload = multer({ dest: "../src/assets/images/" });
+
 const router = express.Router();
 
-router.post("/addBlog", addBlog);
+router.post("/addBlog", upload.single("image"), uploadBlogImage, addBlog);
 router.get("/getBlogs", getBlogs);
 router.get("/allBlogs/:id", getApprovedBlogs);
 router.get("/getMyBlogs/:id", getMyBlogs);

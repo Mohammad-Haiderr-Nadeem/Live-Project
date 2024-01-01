@@ -3,19 +3,39 @@ const modal = require("../models");
 const addBlog = async (req, res) => {
   try {
     const { author, blogContent, status, userId } = await req.body;
-    if (author && blogContent && status && userId) {
-      const blog = await modal.Blogs.create({
-        name: author,
-        userId,
-        content: blogContent,
-        status,
-      });
-      if (blog) {
-        return res.status(200).json({ blog });
-      } else {
-        return res.status(406).json({
-          msg: "Error in creating the blog",
+    const { image } = await req;
+    if (!image) {
+      if (author && blogContent && status && userId) {
+        const blog = await modal.Blogs.create({
+          name: author,
+          userId,
+          content: blogContent,
+          status,
         });
+        if (blog) {
+          return res.status(200).json({ blog });
+        } else {
+          return res.status(406).json({
+            msg: "Error in creating the blog",
+          });
+        }
+      }
+    } else {
+      if (author && blogContent && status && userId && image) {
+        const blog = await modal.Blogs.create({
+          name: author,
+          userId,
+          content: blogContent,
+          image,
+          status,
+        });
+        if (blog) {
+          return res.status(200).json({ blog });
+        } else {
+          return res.status(406).json({
+            msg: "Error in creating the blog",
+          });
+        }
       }
     }
   } catch (err) {
