@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const modal = require("../models");
 const bcrypt = require("bcrypt");
+const otpGenerator = require("otp-generator");
 
 process.env.JWT_SECRET_KEY = "bhevfqbhuefvqbhuefqhuefqvb2136872368932678";
 
@@ -30,7 +31,13 @@ const addUser = async (req, res) => {
             );
             res.cookie("accessToken", token);
             res.cookie("myId", user.id);
-            return res.status(201).json({ user });
+            const otp = otpGenerator.generate(6, {
+              digits: true,
+              alphabets: false,
+              upperCaseAlphabets: false,
+              specialChars: false,
+            });
+            return res.status(201).json({ user, otp });
           } else {
             return res.status(406).json({
               msg: "Error in creating the user",

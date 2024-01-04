@@ -1,0 +1,155 @@
+.blogList {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.blogItem {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.author {
+  font-weight: bold;
+  color: #333;
+}
+
+.content {
+  margin-top: 10px;
+}
+
+.socialContainer {
+  border-radius: 0.5em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px auto;
+  width: 37.5em;
+  height: auto;
+  font-family: helvetica;
+  display: flex;
+  flex-direction: col;
+}
+
+.left {
+  flex: 1;
+  order: 1;
+}
+.pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 4em;
+  width: 4em;
+  margin: 1.5em;
+  background-color: #4267b2;
+  border-radius: 1em;
+  transition: 0.25s linear;
+}
+
+.pic > h1 {
+  color: white;
+}
+
+.right {
+  flex: 4;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.topWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  order: 1;
+}
+.handle {
+  order: 1;
+  opacity: 0.7;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.time {
+  order: 2;
+  opacity: 0.3;
+}
+
+.blogImage {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.midWrapper {
+  display: flex;
+  flex-flow: column wrap;
+  order: 2;
+  border-bottom: 1px solid lightgrey;
+}
+
+.bottomWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  order: 3;
+  padding: 0.3em;
+}
+
+.pic:hover {
+  transform: scale(1.025);
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button {
+  border-radius: 12px;
+  color: black;
+  padding: 7px 10px;
+  transition: all 0.1s linear;
+  cursor: pointer;
+}
+
+.comment:hover {
+  background-color: gold;
+  color: white;
+}
+
+.like:hover {
+  background-color: lightgreen;
+  color: white;
+}
+
+.dislike:hover {
+  background-color: maroon;
+  color: white;
+}
+
+.share:hover {
+  background-color: steelblue;
+  color: white;
+}
+
+.liked {
+  background-color: lightgreen;
+  color: white;
+}
+
+.likeCount {
+  margin-left: 5px;
+  font-size: 0.8em;
+  color: #333;
+}
+
+.myPara {
+  text-align: center;
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+}

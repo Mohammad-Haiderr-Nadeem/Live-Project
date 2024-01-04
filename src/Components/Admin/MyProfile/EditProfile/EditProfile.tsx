@@ -28,7 +28,7 @@ const EditProfile = (props: {
     e.preventDefault();
     try {
       const res = await axios.patch(
-        `http://localhost:8000/updateAdminProfile/${Cookies.get("myAdminId")}`,
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/updateAdminProfile/${Cookies.get("myAdminId")}`,
         formData
       );
       if (res.status === 200) {

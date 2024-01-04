@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const getImage = useCallback(async () => {
     const userId = Cookies.get("myId");
-    const res = await axios.get(`http://localhost:8000/getMyProfile/${userId}`);
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyProfile/${userId}`);
     setImage(res.data.image);
   }, []);
 

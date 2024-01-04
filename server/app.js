@@ -20,6 +20,8 @@ const loginRoute = require("./routes/login");
 const firendsRoute = require("./routes/friends");
 const adminRoutes = require("./routes/admin");
 const blogRoutes = require("./routes/blogs");
+const likeRoutes = require("./routes/likes");
+const commentRoutes = require("./routes/comments");
 
 app.use(express.json());
 app.use("/", usersRoute);
@@ -27,6 +29,8 @@ app.use("/", loginRoute);
 app.use("/", firendsRoute);
 app.use("/", adminRoutes);
 app.use("/", blogRoutes);
+app.use("/", likeRoutes);
+app.use("/", commentRoutes);
 
 const PORT = 8000;
 app.listen(PORT, async () => {

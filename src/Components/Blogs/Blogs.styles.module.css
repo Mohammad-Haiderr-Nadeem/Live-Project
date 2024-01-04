@@ -54,6 +54,8 @@
   transition: background-color 0.3s ease;
   font-size: 20px;
   font-weight: bold;
+  width: 90%;
+  margin-left: 10%;
 }
 
 .mybutton:hover {
@@ -66,4 +68,37 @@
   margin-top: 20px;
   color: #333;
   text-align: center;
+}
+
+.textAreaContainer {
+  position: relative;
+}
+
+.mytextarea {
+  width: 95%;
+  padding: 15px;
+  margin-bottom: 20px;
+  resize: none;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.imageUploadContainer {
+  position: absolute;
+  top: 150px;
+  left: 10px;
+}
+
+.imageUploadIcon {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.imageUploadIcon:hover {
+  background-color: #2980b9;
 }

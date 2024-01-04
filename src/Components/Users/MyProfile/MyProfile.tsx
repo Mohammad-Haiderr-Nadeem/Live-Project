@@ -17,7 +17,7 @@ const MyProfile = () => {
 
   const getUser = useCallback(async () => {
     const res = await axios.get(
-      `http://localhost:8000/getMyProfile/${Cookies.get("myId")}`
+      `${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyProfile/${Cookies.get("myId")}`
     );
     setFirstName(res.data.firstName);
     setLastName(res.data.lastName);

@@ -34,9 +34,10 @@ const SignUpForm = () => {
         formData.append("gender", gender);
         formData.append("password", password);
         const res = await axios.post(
-          "http://localhost:8000/signUpForm",
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/signUpForm`,
           formData
         );
+        console.log("res: ", res);
         if (res.status === 201) {
           setFirstName("");
           setLastName("");
@@ -67,7 +68,7 @@ const SignUpForm = () => {
   };
 
   const handleGoogleSignUp = () => {
-    window.open("http://localhost:8000/google", "_self");
+    window.open(`${process.env.REACT_APP_BACKEND_LOCALHOST}/google`, "_self");
   };
 
   return (

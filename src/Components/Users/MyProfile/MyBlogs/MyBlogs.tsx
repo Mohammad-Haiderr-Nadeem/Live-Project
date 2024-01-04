@@ -20,7 +20,9 @@ const MyBlogs = () => {
   const getBlogs = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/getMyBlogs/${Cookies.get("myId")}`
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyBlogs/${Cookies.get(
+          "myId"
+        )}`
       );
       setBlogs(res.data.blogs);
     } catch (err: AxiosError | any) {
@@ -39,7 +41,7 @@ const MyBlogs = () => {
     try {
       if (id) {
         const res = await axios.delete(
-          `http://localhost:8000/deleteBlog/${id}`
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/deleteBlog/${id}`
         );
         if (res.status === 200) {
           Swal.fire({

@@ -12,7 +12,7 @@ const AdminLogin = () => {
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/checkAdmin", {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_LOCALHOST}/checkAdmin`, {
         email,
         password,
       });

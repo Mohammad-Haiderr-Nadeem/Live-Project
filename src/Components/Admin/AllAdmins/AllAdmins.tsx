@@ -27,7 +27,7 @@ const AllAdmins = () => {
 
   const getUsers = useCallback(async () => {
     try {
-      const res = await axios.get<User[]>("http://localhost:8000/getAllAdmins");
+      const res = await axios.get<User[]>(`${process.env.REACT_APP_BACKEND_LOCALHOST}/getAllAdmins`);
       if (res.status === 200) {
         setUsers(res.data);
       }

@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     try {
       if (email && password) {
-        const res = await axios.post("http://localhost:8000/loginForm", {
+        const res = await axios.post(`${process.env.REACT_APP_BACKEND_LOCALHOST}/loginForm`, {
           email,
           password,
         });
@@ -52,7 +52,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.open("http://localhost:8000/google", "_self");
+    window.open(`${process.env.REACT_APP_BACKEND_LOCALHOST}/google`, "_self");
   };
 
   const handleOnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {

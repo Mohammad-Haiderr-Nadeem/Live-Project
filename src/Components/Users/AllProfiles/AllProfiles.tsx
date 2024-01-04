@@ -27,11 +27,11 @@ const AllProfiles = () => {
   const getUsers = useCallback(async () => {
     try {
       const res = await axios.get<User[]>(
-        "http://localhost:8000/getAllProfiles"
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getAllProfiles`
       );
       setUsers(res.data);
       const response = await axios.get(
-        `http://localhost:8000/getMyProfile/${Cookies.get("myId")}`
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyProfile/${Cookies.get("myId")}`
       );
       setFriendsIdList(response.data.friends);
     } catch (error) {
@@ -45,7 +45,7 @@ const AllProfiles = () => {
 
   const handleAddFriend = async (friendId: string) => {
     await axios.patch(
-      `http://localhost:8000/addFriend/${Cookies.get("myId")}`,
+      `${process.env.REACT_APP_BACKEND_LOCALHOST}/addFriend/${Cookies.get("myId")}`,
       { friendId }
     );
     getUsers();

@@ -1,0 +1,57 @@
+.commentsContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.commentInputContainer {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.commentInput {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.postButton {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.commentList {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.comment {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.commentHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.commentAuthor {
+  color: #007bff;
+}
+
+.commentTime {
+  color: #555;
+  font-size: 0.8rem;
+}

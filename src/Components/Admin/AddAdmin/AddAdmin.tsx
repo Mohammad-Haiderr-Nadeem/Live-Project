@@ -44,7 +44,7 @@ const AddAdmin = () => {
     formDataUser.append("password", formData.password);
     try {
       const res = await axios.post(
-        `http://localhost:8000/addAdmin`,
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/addAdmin`,
         formDataUser
       );
       if (res.status === 200) {

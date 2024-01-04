@@ -18,7 +18,7 @@ const UserApprovedBlogs = ({ id }: any) => {
   const getBlogs = useCallback(async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/getMyApprovedBlogs/${id}`
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyApprovedBlogs/${id}`
       );
       if (res.status === 200) {
         setBlogs(res.data.blogs);
@@ -31,8 +31,6 @@ const UserApprovedBlogs = ({ id }: any) => {
   useEffect(() => {
     getBlogs();
   }, [getBlogs]);
-
-  console.log("Blogs: ", blogs);
 
   return (
     <React.Fragment>

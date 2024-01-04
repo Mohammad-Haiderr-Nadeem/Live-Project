@@ -4,21 +4,72 @@ import moment from "moment";
 import validator from "validator";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
-const BlogList = ({ id, userId, name, content, createdAt }: any) => {
-  const [image, setImage] = useState("");
+const BlogList = ({ id, userId, name, content, createdAt, image }: any) => {
+  const [photo, setPhoto] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [count, setCount] = useState("");
   const navigate = useNavigate();
 
   const getImage = useCallback(async () => {
     try {
       const imageResponse = await axios.get(
-        `http://localhost:8000/getMyProfile/${userId}`
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyProfile/${userId}`
       );
-      setImage(imageResponse.data.image);
+      setPhoto(imageResponse.data.image);
     } catch (err) {
       console.log("error in getting users", err);
     }
   }, [userId]);
+
+  const getLikedBlogs = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getLikes`,
+        {
+          params: {
+            id,
+            userId: Cookies.get("myId"),
+          },
+        }
+      );
+      if (res.status === 200) {
+        if (res.data.msg === "no") {
+          setIsLiked(false);
+        } else if (res.data.msg === "yes") {
+          setIsLiked(true);
+        }
+      }
+    } catch (err) {
+      console.log("error in getting liked blogs", err);
+    }
+  };
+
+  const getCountOfLikes = useCallback(async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getLikesCount/${id}`
+      );
+      if (res.status === 200) {
+        if (res.data > 0) {
+          setCount(res.data);
+        } else {
+          setCount("");
+        }
+      }
+    } catch (err) {
+      console.log("error in getting count of likes", err);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    getLikedBlogs();
+  });
+
+  useEffect(() => {
+    getCountOfLikes();
+  }, [getCountOfLikes]);
 
   useEffect(() => {
     getImage();
@@ -28,6 +79,41 @@ const BlogList = ({ id, userId, name, content, createdAt }: any) => {
     navigate(`/myblogs/${id}`);
   };
 
+  const handleLike = async (id: string) => {
+    try {
+      const userId = Cookies.get("myId");
+      if (!isLiked) {
+        const res = await axios.patch(
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/updateLike/${id}`,
+          {
+            userId,
+          }
+        );
+        if (res.status === 200) {
+          setIsLiked(true);
+          getCountOfLikes();
+        }
+      } else {
+        const res = await axios.patch(
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/updateDislike/${id}`,
+          {
+            userId,
+          }
+        );
+        if (res.status === 200) {
+          setIsLiked(false);
+          getCountOfLikes();
+        }
+      }
+    } catch (err) {
+      console.log("error in liking post", err);
+    }
+  };
+
+  const handleComment = (id: string) => {
+    navigate(`/comments/${id}`);
+  };
+
   return (
     <React.Fragment>
       <div className={styles.socialContainer} key={id}>
@@ -35,10 +121,10 @@ const BlogList = ({ id, userId, name, content, createdAt }: any) => {
           <img
             className={styles.pic}
             src={
-              validator.isURL(image)
-                ? image
-                : image
-                ? require(`../../../assets/images/${image}`)
+              validator.isURL(photo)
+                ? photo
+                : photo
+                ? require(`../../../assets/images/${photo}`)
                 : "image"
             }
             alt="profile"
@@ -55,12 +141,33 @@ const BlogList = ({ id, userId, name, content, createdAt }: any) => {
             <p className={styles.time}>{moment(createdAt).format("llll")}</p>
           </div>
           <div className={styles.midWrapper}>
+            {image && (
+              <img
+                className={styles.blogImage}
+                src={require(`../../../assets/images/${image}`)}
+                alt="blog"
+              />
+            )}
             <p>{content}</p>
           </div>
           <div className={styles.bottomWrapper}>
-            <div className={`${styles.like} ${styles.button}`}>Like</div>
+            <div
+              className={
+                isLiked
+                  ? `${styles.liked} ${styles.button}`
+                  : `${styles.like} ${styles.button}`
+              }
+              onClick={() => handleLike(id)}
+            >
+              Like <span className={styles.likeCount}>{count}</span>
+            </div>
             <div className={`${styles.dislike} ${styles.button}`}>Dislike</div>
-            <div className={`${styles.comment} ${styles.button}`}>Comment</div>
+            <div
+              className={`${styles.comment} ${styles.button}`}
+              onClick={() => handleComment(id)}
+            >
+              Comment
+            </div>
             <div className={`${styles.share} ${styles.button}`}>Share</div>
           </div>
         </div>

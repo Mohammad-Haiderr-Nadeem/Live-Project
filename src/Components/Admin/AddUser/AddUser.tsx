@@ -31,7 +31,7 @@ const AddUser = () => {
         formData.append("gender", gender);
         formData.append("password", password);
         const res = await axios.post(
-          "http://localhost:8000/addUser",
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/addUser`,
           formData
         );
         if (res.status === 201) {

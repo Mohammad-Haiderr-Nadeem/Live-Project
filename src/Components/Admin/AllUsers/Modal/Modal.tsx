@@ -22,7 +22,7 @@ const Modal = ({ isOpen, onClose, user, getUsers }: any) => {
         formData.append("image", image);
       }
       const res = await axios.patch(
-        `http://localhost:8000/updateUser/${user.id}`,
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/updateUser/${user.id}`,
         formData
       );
       if (res.status === 200) {

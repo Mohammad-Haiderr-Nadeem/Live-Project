@@ -7,6 +7,7 @@ const {
   getMyBlogs,
   getMyApprovedBlogs,
   deleteBlog,
+  getBlog,
 } = require("../controllers/blogs");
 
 const { uploadBlogImage } = require("../middleware/uploadBlogImage");
@@ -19,6 +20,7 @@ router.post("/addBlog", upload.single("image"), uploadBlogImage, addBlog);
 router.get("/getBlogs", getBlogs);
 router.get("/allBlogs/:id", getApprovedBlogs);
 router.get("/getMyBlogs/:id", getMyBlogs);
+router.get("/getBlog/:id", getBlog);
 router.get("/getMyApprovedBlogs/:id", getMyApprovedBlogs);
 router.patch("/updateBlog/:id", updateStatus);
 router.delete("/deleteBlog/:id", deleteBlog);

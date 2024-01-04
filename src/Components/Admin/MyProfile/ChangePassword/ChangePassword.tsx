@@ -24,7 +24,7 @@ const ChangePassword = (props: {
     e.preventDefault();
     try {
       const res = await axios.patch(
-        `http://localhost:8000/changePassword/${Cookies.get("myId")}`,
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/changePassword/${Cookies.get("myId")}`,
         formData
       );
       if (res.status === 200) {

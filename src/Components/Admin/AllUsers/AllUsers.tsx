@@ -34,7 +34,7 @@ const AllUsers = () => {
   const getUsers = useCallback(async () => {
     try {
       const res = await axios.get<User[]>(
-        "http://localhost:8000/getAllProfiles"
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getAllProfiles`
       );
       if (res.status === 200) {
         setUsers(res.data);
@@ -61,7 +61,7 @@ const AllUsers = () => {
     isOpen();
     try {
       const res = await axios.get(
-        `http://localhost:8000/getMyProfile/${userId}`
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyProfile/${userId}`
       );
       if (res.status === 200) {
         setUser(res.data);
@@ -76,7 +76,7 @@ const AllUsers = () => {
     if (confirmation) {
       try {
         const res = await axios.delete(
-          `http://localhost:8000/deleteUser/${userId}`
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/deleteUser/${userId}`
         );
         if (res.status === 200) {
           Swal.fire({

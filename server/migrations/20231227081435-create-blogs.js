@@ -25,10 +25,14 @@ module.exports = {
         },
         status: {
           type: Sequelize.STRING,
-          allowNull: true,
+          allowNull: false,
         },
         image: {
           type: Sequelize.STRING,
+        },
+        liked: {
+          type: Sequelize.STRING,
+          allowNull: false,
         },
         createdAt: {
           allowNull: false,

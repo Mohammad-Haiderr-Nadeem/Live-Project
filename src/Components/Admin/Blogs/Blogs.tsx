@@ -9,19 +9,20 @@ interface Blog {
   id: string;
   name: string;
   content: string;
+  image: string;
   status: string;
   createdAt: string;
 }
 
 const AdminBlogs = () => {
-  const [blogs, setBlogs] = useState<Blog[]>([
-    { id: "", name: "", content: "", status: "", createdAt: "" },
-  ]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const [updatedStatus, setUpdatedStatus] = useState("");
 
   const getBlogs = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/getBlogs");
+      const res = await axios.get(
+        `${process.env.REACT_APP_BACKEND_LOCALHOST}/getBlogs`
+      );
       setBlogs(res.data);
     } catch (err) {
       console.log("error in getting blogs", err);
@@ -35,7 +36,7 @@ const AdminBlogs = () => {
     try {
       if (updatedStatus) {
         const res = await axios.patch(
-          `http://localhost:8000/updateBlog/${id}`,
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/updateBlog/${id}`,
           {
             updatedStatus,
           }
@@ -70,6 +71,7 @@ const AdminBlogs = () => {
           <tr className={styles.mytr}>
             <th className={styles.myth}>Blog ID</th>
             <th className={styles.myth}>Name</th>
+            <th className={styles.myth}>Image</th>
             <th className={styles.myth}>Content</th>
             <th className={styles.myth}>Status</th>
             <th className={styles.myth}>Created At</th>
@@ -85,6 +87,7 @@ const AdminBlogs = () => {
               createdAt={blog.createdAt}
               content={blog.content}
               key={blog.id}
+              image={blog.image}
               onSave={() => handleSave(blog.id)}
               setUpdatedStatus={setUpdatedStatus}
             />

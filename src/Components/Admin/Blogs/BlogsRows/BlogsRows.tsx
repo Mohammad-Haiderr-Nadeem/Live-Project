@@ -9,12 +9,24 @@ const BlogsRows = ({
   onSave,
   createdAt,
   status,
+  image,
   setUpdatedStatus,
 }: any) => {
   return (
     <tr className={styles.mytr} key={serialNumber}>
       <td className={styles.mytd}>{serialNumber}</td>
       <td className={styles.mytd}>{name}</td>
+      <td className={styles.mytd}>
+        {image ? (
+          <img
+            className={styles.blogImage}
+            src={require(`../../../../assets/images/${image}`)}
+            alt="blog"
+          />
+        ) : (
+          <p>No Image</p>
+        )}
+      </td>
       <td className={styles.mytd}>{content}</td>
       <td className={styles.mytd}>
         <select

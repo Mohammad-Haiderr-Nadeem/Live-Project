@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import styles from "./UserBlog.styles.module.css";
 import Navbar from "../../Navbar/Navbar";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -15,7 +14,7 @@ const UserBlog = () => {
   const { id } = useParams();
 
   const getUser = useCallback(async () => {
-    const res = await axios.get(`http://localhost:8000/getMyProfile/${id}`);
+    const res = await axios.get(`${process.env.REACT_APP_BACKEND_LOCALHOST}/getMyProfile/${id}`);
     setFirstName(res.data.firstName);
     setLastName(res.data.lastName);
     setGender(res.data.gender);

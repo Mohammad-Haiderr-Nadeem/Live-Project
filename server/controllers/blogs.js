@@ -2,15 +2,16 @@ const modal = require("../models");
 
 const addBlog = async (req, res) => {
   try {
-    const { author, blogContent, status, userId } = await req.body;
+    const { author, blogContent, status, userId, liked } = await req.body;
     const { image } = await req;
     if (!image) {
-      if (author && blogContent && status && userId) {
+      if (author && blogContent && status && userId && liked) {
         const blog = await modal.Blogs.create({
           name: author,
           userId,
           content: blogContent,
           status,
+          liked,
         });
         if (blog) {
           return res.status(200).json({ blog });
@@ -168,6 +169,22 @@ const getMyApprovedBlogs = async (req, res) => {
   }
 };
 
+const getBlog = async (req, res) => {
+  try {
+    const { id } = await req.params;
+    if (id) {
+      const blog = await modal.Blogs.findOne({ where: { id } });
+      if (blog) {
+        return res.status(200).json(blog);
+      } else {
+        return res.status(404).json({ msg: "NO BLOG FOUND!!" });
+      }
+    }
+  } catch (err) {
+    console.log("error in getting blog", err);
+  }
+};
+
 module.exports = {
   addBlog,
   getBlogs,
@@ -176,4 +193,5 @@ module.exports = {
   getMyBlogs,
   deleteBlog,
   getMyApprovedBlogs,
+  getBlog,
 };

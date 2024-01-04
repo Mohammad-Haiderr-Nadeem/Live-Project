@@ -22,7 +22,7 @@ const AdminNavbar = () => {
   const getImage = useCallback(async () => {
     const userId = Cookies.get("myAdminId");
     const res = await axios.get(
-      `http://localhost:8000/getAdminProfile/${userId}`
+      `${process.env.REACT_APP_BACKEND_LOCALHOST}/getAdminProfile/${userId}`
     );
     setImage(res.data.image);
   }, []);

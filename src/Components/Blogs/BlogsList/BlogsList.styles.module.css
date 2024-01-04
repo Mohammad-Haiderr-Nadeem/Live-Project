@@ -80,9 +80,17 @@
   opacity: 0.3;
 }
 
+.blogImage {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
 .midWrapper {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   order: 2;
   border-bottom: 1px solid lightgrey;
 }
@@ -127,3 +135,15 @@
   background-color: steelblue;
   color: white;
 }
+
+.liked {
+  background-color: lightgreen;
+  color: white;
+}
+
+.likeCount {
+  margin-left: 5px;
+  font-size: 0.8em;
+  color: #333;
+}
+
