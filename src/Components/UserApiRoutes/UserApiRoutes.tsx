@@ -11,6 +11,8 @@ import AllProfiles from "../Users/AllProfiles/AllProfiles";
 import MyFriends from "../Users/MyFriends/MyFriends";
 import MyProfile from "../Users/MyProfile/MyProfile";
 import Comments from "../Blogs/Comments/Comments";
+import UnverifiedUser from "../Auth/Login/UnverifiedUser/UnverifiedUser";
+import OTP from "../Auth/SignUp/OTP/OTP";
 
 const UserApiRoutes = () => {
   return (
@@ -24,6 +26,16 @@ const UserApiRoutes = () => {
         <Route
           path="/signup"
           element={<PublicRoute element={<SignUp />} redirectTo="/home" />}
+        />
+        <Route
+          path="/otp"
+          element={<PublicRoute element={<OTP />} redirectTo="/home" />}
+        />
+        <Route
+          path="/unverifieduser"
+          element={
+            <PublicRoute element={<UnverifiedUser />} redirectTo="/home" />
+          }
         />
         <Route
           path="/home"

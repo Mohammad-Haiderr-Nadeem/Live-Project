@@ -17,14 +17,22 @@ const Login = () => {
     e.preventDefault();
     try {
       if (email && password) {
-        const res = await axios.post(`${process.env.REACT_APP_BACKEND_LOCALHOST}/loginForm`, {
-          email,
-          password,
-        });
-        if (res.status === 200) {
+        const res = await axios.post(
+          `${process.env.REACT_APP_BACKEND_LOCALHOST}/loginForm`,
+          {
+            email,
+            password,
+          }
+        );
+        console.log("res: ", res);
+        if (res.status === 200 && res.data.user.verified === "yes") {
+          console.log("blogs");
           setEmail("");
           setPassword("");
           navigate("/blogs");
+        } else if (res.status === 200 && res.data.user.verified === "no") {
+          console.log("unverified");
+          navigate("/unverifiedUser");
         }
       } else {
         Swal.fire({

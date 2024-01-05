@@ -4,6 +4,8 @@ const {
   checkUser,
   getUsers,
   getUser,
+  verifyOtp,
+  resetOtp,
 } = require("../controllers/login");
 const { uploadFile } = require("../middleware/uploadFile");
 const multer = require("multer");
@@ -15,5 +17,7 @@ router.post("/signUpForm", upload.single("image"), uploadFile, addUser);
 router.post("/loginForm", checkUser);
 router.get("/getAllProfiles", getUsers);
 router.get("/getMyProfile/:id", getUser);
+router.post("/verifyOtp", verifyOtp);
+router.patch("/resetOtp", resetOtp);
 
 module.exports = router;

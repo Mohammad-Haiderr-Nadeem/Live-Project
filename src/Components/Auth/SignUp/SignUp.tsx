@@ -26,6 +26,7 @@ const SignUpForm = () => {
         gender &&
         password
       ) {
+        const verified = "no";
         const formData = new FormData();
         formData.append("firstName", firstName);
         formData.append("lastName", lastName);
@@ -33,11 +34,11 @@ const SignUpForm = () => {
         formData.append("image", profilePhoto);
         formData.append("gender", gender);
         formData.append("password", password);
+        formData.append("verified", verified);
         const res = await axios.post(
           `${process.env.REACT_APP_BACKEND_LOCALHOST}/signUpForm`,
           formData
         );
-        console.log("res: ", res);
         if (res.status === 201) {
           setFirstName("");
           setLastName("");
@@ -45,7 +46,7 @@ const SignUpForm = () => {
           setProfilePhoto(null);
           setGender("");
           setPassword("");
-          navigate("/home");
+          navigate("/otp");
         } else {
           alert("Error!!");
         }

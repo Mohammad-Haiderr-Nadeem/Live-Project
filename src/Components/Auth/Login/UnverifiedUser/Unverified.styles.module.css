@@ -1,0 +1,33 @@
+.myHeading {
+  font-size: 40px;
+  color: cadetblue;
+  font-weight: bold;
+  text-align: center;
+}
+.myButton {
+  color: white;
+  font-size: 15px;
+  padding: 10px;
+  margin-top: 5%;
+  background-color: rgb(96, 158, 233);
+  width: 25%;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  margin-left: 40%;
+  cursor: pointer;
+}
+
+.myButton:hover {
+    color: white;
+    font-size: 15px;
+    padding: 10px;
+    margin-top: 5%;
+    background-color: rgb(80, 150, 236);
+    width: 25%;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    margin-left: 40%;
+    cursor: pointer;
+  }

@@ -35,6 +35,14 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false,
         },
+        otp: {
+          type: Sequelize.STRING,
+          allowNull: true,
+        },
+        verified: {
+          type: Sequelize.STRING,
+          allowNull: true,
+        },
         friends: {
           type: Sequelize.ARRAY(Sequelize.STRING),
           allowNull: true,
